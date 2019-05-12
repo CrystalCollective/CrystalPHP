@@ -1,0 +1,46 @@
+{
+  "name": "crystlphp/framework",
+  "description": "The CrystlPHP Framework",
+  "type": "framework, library",
+  "keywords": [
+    "framework",
+    "crystlphp"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/crystlphp/framework",
+  "support": {
+    "issues": "https://github.com/crystlphp/framework/issues",
+    "source": "https://github.com/crystlphp/framework"
+  },
+  "authors": [
+    {
+      "name": "Pankaj Vaghela",
+      "email": "vpankaj1998dev@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.1.3"
+  },
+  "replace": {
+  },
+  "conflict": {
+  },
+  "require-dev": {
+  },
+  "autoload": {
+    "files": [],
+    "psr-4": {}
+  },
+  "autoload-dev": {
+    "files": [],
+    "psr-4": {}
+  },
+  "extra": {
+    "branch-alias": {}
+  },
+  "suggest": {
+  },
+  "config": {
+    "sort-packages": true
+  }
+}

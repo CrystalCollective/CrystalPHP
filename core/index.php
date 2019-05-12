@@ -1,0 +1,1 @@
+<?php die("Direct Access Not Allowed");
