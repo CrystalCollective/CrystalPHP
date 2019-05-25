@@ -29,6 +29,11 @@ class Config{
 	 * Load Config files
 	 */
 	public static function load(){
+		require_once DIR_ROOT . "/env.php";
+		/**
+		 * @var $ENV array
+		 */
+		self::set_multiple($ENV);
 		require_once DIR_APP . DIR_EXT_CONFIG . "/basic.php";
 	}
 	
@@ -50,10 +55,12 @@ class Config{
 	 * @return mixed
 	 */
 	public static function set($name, $val){
-		$nodes = explode(".", $name);
+		
+		$nodes = explode(".", strtolower($name));
 		
 		$reference = &self::$config;
 		foreach($nodes as $key){
+			$key = strtolower($key);
 			if(!array_key_exists($key, $reference)){
 				$reference[$key] = [];
 			}
@@ -70,9 +77,9 @@ class Config{
 	 * @param null $default
 	 * @return mixed|null
 	 */
-	function get($name, $default = null){
+	public static function get($name, $default = null){
 		
-		$nodes = explode(".", $name);
+		$nodes = explode(".", strtolower($name));
 		$val = self::$config;
 		
 		foreach($nodes as $node){

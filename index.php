@@ -23,6 +23,7 @@ if(strtoupper(substr(PHP_OS, 0, 3)) === 'WIN'){
 }
 
 define('DIR_ROOT', $root_path);
+define('DIR_BASE', $root_path);
 
 require_once "vendor/autoload.php";
 

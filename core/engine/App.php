@@ -55,8 +55,13 @@ class App{
 	public function initialize(){
 		Config::load();
 		
+		$this->logger = new Lib\Logger\Logger();
+		
+		$this->logger->warning("ok" . Config::get("mail.host", "error"));
 		
 		$this->logger->info("Crystal App initialized");
+		
+		var_dump($this->logger);
 	}
 	
 	
