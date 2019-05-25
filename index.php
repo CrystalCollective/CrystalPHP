@@ -13,6 +13,7 @@
  *
  ******************************************************************************/
 
+$_SERVER['REQUEST_TIME_SCRIPT_START'] = microtime(true);
 $root_path = $_SERVER['DOCUMENT_ROOT'];
 
 // Windows IIS Compatibility
@@ -26,17 +27,17 @@ define('DIR_ROOT', $root_path);
 require_once "vendor/autoload.php";
 
 use \CrystalPHP\App as App;
-use \CrystalPHP\Registry as Reg;
+use \CrystalPHP\Registry as Registry;
 use \CrystalPHP\Router\Router as Router;
 
-$app = App::app(new Reg());
+App::app(new Registry())->initialize();
+
 
 
 Router::get("/", function(){
-	echo "okay";
+	echo "Crystal Home";
 });
 
 $router = new Router();
 
 $router->resolve("/");
-

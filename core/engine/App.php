@@ -46,10 +46,14 @@ class App{
 	 * @return App|null
 	 */
 	public static function app($registry = null){
-		return self::$app = ((self::$app === null) ? new App($registry) : self::$app);
+		if(self::$app === null){
+			self::$app = ($registry instanceof Registry) ? new App($registry) : null;
+		}
+		return self::$app;
 	}
 	
 	public function initialize(){
+		Config::load();
 		
 		
 		$this->logger->info("Crystal App initialized");

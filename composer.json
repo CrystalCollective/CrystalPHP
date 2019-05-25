@@ -29,6 +29,7 @@
   },
   "autoload": {
     "files": [
+      "core/define_paths.php",
       "core/helper/utility.php"
     ],
     "psr-4": {
