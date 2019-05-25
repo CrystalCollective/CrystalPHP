@@ -1,0 +1,29 @@
+RewriteEngine On
+RewriteBase
+
+#Removes trailing slashes (prevents SEO duplicate content issues)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)/$ $1 [L,R=301]
+
+# Enforce www
+# If you have subdomains, you can add them to
+# the list using the "|" (OR) regex operator
+# RewriteCond %{HTTP_HOST} !^(www|subdomain) [NC]
+#RewriteRule ^(.*)$ http://tickets4sure.com/$1 [L,R=301]
+
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule !.*\.php$ %{REQUEST_FILENAME}.php [QSA,L]
+
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule !.*\.html$ %{REQUEST_FILENAME}.html [QSA,L]
+
+
+#Enforce HTTPS
+RewriteCond %{SERVER_PORT} 80
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !\.(?:html|css|js|png|jpe?g|gif|otf|eot|ttf|woff2?|map|ico|txt)$ [NC]
+RewriteRule ^(.*)\?*$ index.php?rt=$1 [L,QSA]
+
