@@ -7,10 +7,10 @@
     "crystlphp"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/crystlphp/framework",
+  "homepage": "https://github.com/CrystalCollective/CrystalPHP",
   "support": {
-    "issues": "https://github.com/crystlphp/framework/issues",
-    "source": "https://github.com/crystlphp/framework"
+    "issues": "https://github.com/CrystalCollective/CrystalPHP/issues",
+    "source": "https://github.com/CrystalCollective/CrystalPHP"
   },
   "authors": [
     {
@@ -28,8 +28,13 @@
   "require-dev": {
   },
   "autoload": {
-    "files": [],
-    "psr-4": {}
+    "files": [
+      "core/helper/utility.php"
+    ],
+    "psr-4": {
+      "CrystalPHP\\": "core/engine",
+      "CrystalPHP\\Lib\\": "core/lib"
+    }
   },
   "autoload-dev": {
     "files": [],
