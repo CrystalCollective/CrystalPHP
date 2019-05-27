@@ -189,6 +189,8 @@ class Request{
 		$uri_nodes = explode("?", $uri);
 		
 		$route_ini = $uri_nodes[0];
+		$route_ini = (substr($route_ini, strlen($route_ini) - 1) === "/") ? substr($route_ini, 0, strlen($route_ini) - 1) : $route_ini;
+		
 		
 		if($uri == null || ($route_ini == "" || $route_ini == "/")){
 			define('ROUTE', Config::get(Configs::ROUTE_ROOT));

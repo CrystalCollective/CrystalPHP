@@ -33,3 +33,7 @@ Router::get("/login", function(){
 	echo "Crystal login";
 });
 
+Router::setDefaultRoute("GET", function(){
+	echo "Default Get";
+});
+
