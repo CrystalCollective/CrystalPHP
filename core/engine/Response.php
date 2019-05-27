@@ -84,7 +84,11 @@ class Response{
 	/**
 	 * @var array http-headers
 	 */
-	private $headers = array();
+	private $headers = [
+		'Content-Type: text/html',
+	];
+	
+	
 	/**
 	 * @var string
 	 */
@@ -121,19 +125,19 @@ class Response{
 		$this->response = ['status' => $status, 'body' => $body];
 		
 		$status = (isset($this->response['status'])) ? $this->response['status'] : 200;
-		$contentType = $this->_getResponseContentType($this->registry->request->request['content-type']);
+//		$contentType = $this->_getResponseContentType($this->registry->request->request['content-type']);
 		$body = (empty($this->response['body'])) ? '' : $this->response['body'];
 		
 		$headers = 'HTTP/1.1 ' . $status . ' ' . $this->_getStatusMessage($status);
 		
 		//Prepare output
 		$this->addHeader($headers);
-		$this->addHeader('Content-Type: ' . $contentType);
+//		$this->addHeader('Content-Type: ' . $contentType);
 //		$this->addHeader("Access-Control-Allow-Origin:  " . $_SERVER['HTTP_ORIGIN']);
 		$this->addHeader("Access-Control-Allow-Credentials: true");
 		$this->setOutput($body);
-		
-		$this->output();
+		$output = $this->output();
+		echo $output;
 		exit(0);
 	}
 	
@@ -183,7 +187,7 @@ class Response{
 	}
 	
 	public function addJSONHeader(){
-		$this->headers['content-type'] = 'Content-Type: application/json';
+		$this->addHeader('Content-Type: application/json');
 	}
 	
 	public function output(){
@@ -197,7 +201,7 @@ class Response{
 				header($header, true);
 			}
 		}
-		echo $output;
+		return $output;
 	}
 	
 	/**
@@ -247,9 +251,9 @@ class Response{
 	public function __get($name){
 		return $this->registry->get($name);
 	}
-	
 	public function __set($name, $value){
 		$this->registry->set($name, $value);
 	}
+	
 	
 }

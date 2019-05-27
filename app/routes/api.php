@@ -18,3 +18,12 @@
  * Date: 27-05-2019
  * Time: 15:25
  */
+
+use CrystalPHP\Router\Router;
+
+Router::get("/api", function(){
+	
+	$rest = new \CrystalPHP\REST();
+	$rest->setResponseMsg("Welcome to CrystalPHP API");
+	$rest->sendResponse(200, ["name" => "pankaj"]);
+})->name("api.get.home");

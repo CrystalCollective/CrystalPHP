@@ -139,11 +139,6 @@ class Request{
 				break;
 		}
 		$this->request['content-type'] = $this->_getResponseFormat($this->request['format']);
-//		if (!function_exists('trim_value')){
-//			function trim_value(&$value){
-//				$value = trim($value);
-//			}
-//		}
 		array_walk_recursive($this->request, 'trim');
 	}
 	
@@ -385,6 +380,16 @@ class Request{
 		setcookie($name, null, -1, $path);
 		unset($this->cookie[$name], $_COOKIE[$name]);
 		return true;
+	}
+	
+	
+	public function getRequestParams(){
+		return $this->request['params'];
+	}
+	
+	
+	public function getRequestParam($param_name){
+		return $this->request['params'][$param_name];
 	}
 	
 	
