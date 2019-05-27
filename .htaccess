@@ -1,5 +1,4 @@
 RewriteEngine On
-RewriteBase
 
 #Removes trailing slashes (prevents SEO duplicate content issues)
 RewriteCond %{REQUEST_FILENAME} !-d
@@ -19,11 +18,11 @@ RewriteRule !.*\.html$ %{REQUEST_FILENAME}.html [QSA,L]
 
 
 #Enforce HTTPS
-RewriteCond %{SERVER_PORT} 80
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+#RewriteCond %{SERVER_PORT} 80
+#RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-#RewriteCond %{REQUEST_FILENAME} !-f
-#RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !\.(?:html|css|js|png|jpe?g|gif|otf|eot|ttf|woff2?|map|ico|txt)$ [NC]
 RewriteRule ^(.*)\?*$ index.php?rt=$1 [L,QSA]
 

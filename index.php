@@ -14,7 +14,8 @@
  ******************************************************************************/
 
 $_SERVER['REQUEST_TIME_SCRIPT_START'] = microtime(true);
-$root_path = $_SERVER['DOCUMENT_ROOT'];
+define("TIME_START", $_SERVER['REQUEST_TIME_SCRIPT_START']);
+$root_path = __DIR__;
 
 // Windows IIS Compatibility
 if(strtoupper(substr(PHP_OS, 0, 3)) === 'WIN'){
@@ -33,12 +34,23 @@ use \CrystalPHP\Router\Router as Router;
 
 App::app(new Registry())->initialize();
 
-
-
 Router::get("/", function(){
 	echo "Crystal Home";
 });
 
+Router::get("/home", function(){
+	echo "Crystal Home";
+});
+
+Router::get("/login", function(){
+	echo "Crystal login";
+});
+
 $router = new Router();
 
-$router->resolve("/");
+try{
+	$router->resolve(ROUTE);
+} catch (Exception $e){
+	App::app()->logger->error($e->getMessage());
+}
+

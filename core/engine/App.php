@@ -21,6 +21,7 @@
 
 namespace CrystalPHP;
 
+use CrystalPHP\Config\Config as Config;
 use CrystalPHP\Lib\Logger\Logger as Logger;
 
 /**
@@ -28,6 +29,8 @@ use CrystalPHP\Lib\Logger\Logger as Logger;
  * @package CrystalPHP
  *
  * @property Registry $registry
+ * @property Config $config
+ * @property Request $request
  * @property Logger $logger
  */
 class App{
@@ -52,16 +55,21 @@ class App{
 		return self::$app;
 	}
 	
+	/**
+	 *
+	 */
 	public function initialize(){
-		Config::load();
+		$this->config = Config::getInstance(true);
+		
+		$this->request = Request::getInstance();
 		
 		$this->logger = new Lib\Logger\Logger();
 		
 		$this->logger->warning("ok" . Config::get("mail.host", "error"));
 		
 		$this->logger->info("Crystal App initialized");
-		
-		var_dump($this->logger);
+
+//		var_dump($this->logger);
 	}
 	
 	

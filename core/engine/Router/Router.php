@@ -156,6 +156,11 @@ class Router{
 		}
 	}
 	
+	/**
+	 * @param string $rt
+	 * @return mixed
+	 * @throws RouteException
+	 */
 	public function resolve($rt = ''){
 		if($rt == ''){
 			$rt = ($this->cur_rt == null) ? static::$req_rt : $this->cur_rt;
@@ -197,8 +202,7 @@ class Router{
 			}
 		}
 		
-		echo "Invalid request";
-		exit(0);
+		throw new RouteException("No Route Found. Current Route : " . $rt);
 	}
 	
 }

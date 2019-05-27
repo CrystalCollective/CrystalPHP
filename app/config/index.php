@@ -1,0 +1,1 @@
+<?php die("Direct script access not allowed");

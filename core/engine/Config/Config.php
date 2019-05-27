@@ -19,11 +19,25 @@
  * Time: 13:30
  */
 
-namespace CrystalPHP;
+namespace CrystalPHP\Config;
 
 class Config{
 	
+	public static $instance = null;
+	
 	public static $config = [];
+	
+	/**
+	 * @param bool $load
+	 * @return Config|null
+	 */
+	public static function getInstance($load = false){
+		if(self::$instance == null){
+			self::$instance = new Config();
+		}
+		if($load) self::load();
+		return self::$instance;
+	}
 	
 	/**
 	 * Load Config files
