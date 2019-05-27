@@ -42,6 +42,18 @@ class Request{
 	private $platform;
 	private $device_type;
 	
+	public $request = [];
+	
+	/**
+	 * @return Request
+	 */
+	public static function getInstance(){
+		if(self::$instance == null){
+			self::$instance = new Request();
+		}
+		return self::$instance;
+	}
+	
 	public function __construct(){
 		$_GET = $this->clean($_GET);
 		$_POST = $this->clean($_POST);
@@ -62,6 +74,7 @@ class Request{
 		if(array_key_exists('__e', $this->get)){
 			$this->post = array_replace_recursive($this->post, $this->decodeURI($this->post['__e']));
 		}
+		$this->processRequest();
 		$this->_detectBrowser();
 		$this->_detectHostInfo();
 	}
@@ -98,6 +111,57 @@ class Request{
 		}
 		//clean data before return
 		return $this->clean($params);
+	}
+	
+	
+	/**
+	 * Processing raw HTTP requests
+	 */
+	private function processRequest(){
+		$this->request['method'] = strtolower($_SERVER['REQUEST_METHOD']);
+		
+		$this->request['headers'] = $this->_getHeaders();
+		$this->request['format'] = isset($_GET['format']) ? trim($_GET['format']) : null;
+		switch($this->request['method']){
+			case 'get':
+				$this->request['params'] = $_GET;
+				break;
+			case 'post':
+				$this->request['params'] = $_POST;
+				break;
+			case 'put':
+				parse_str(file_get_contents('php://input'), $this->request['params']);
+				break;
+			case 'delete':
+				$this->request['params'] = $_GET;
+				break;
+			default:
+				break;
+		}
+		$this->request['content-type'] = $this->_getResponseFormat($this->request['format']);
+//		if (!function_exists('trim_value')){
+//			function trim_value(&$value){
+//				$value = trim($value);
+//			}
+//		}
+		array_walk_recursive($this->request, 'trim');
+	}
+	
+	private function _getHeaders(){
+		if(function_exists('apache_request_headers')){
+			return apache_request_headers();
+		}
+		$headers = array();
+		$keys = preg_grep('{^HTTP_}i', array_keys($_SERVER));
+		foreach($keys as $val){
+			$key = str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($val, 5)))));
+			$headers[$key] = $_SERVER[$val];
+		}
+		return $headers;
+	}
+	
+	private function _getResponseFormat($format){
+		return (in_array($format, Response::$formats)) ? $format : Response::DEFAULT_RESPONSE_FORMAT;
 	}
 	
 	private function _detectBrowser(){
@@ -201,15 +265,6 @@ class Request{
 		define('rt', ROUTE);
 	}
 	
-	/**
-	 * @return Request
-	 */
-	public static function getInstance(){
-		if(self::$instance == null){
-			self::$instance = new Request();
-		}
-		return self::$instance;
-	}
 	
 	public function getBrowser(){
 		return $this->browser;
@@ -246,6 +301,9 @@ class Request{
 		return $ip;
 	}
 	
+	public function getMethod(){
+		return $this->server['REQUEST_METHOD'];
+	}
 	/**
 	 * @return bool
 	 */

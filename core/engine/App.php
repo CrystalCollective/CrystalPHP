@@ -32,10 +32,13 @@ use CrystalPHP\Router\Router;
  * @property Registry $registry
  * @property Config $config
  * @property Request $request
+ * @property Response $response
  * @property Logger $logger
  */
 class App{
 	static $app = null;
+	
+	protected $registry;
 	
 	/**
 	 * CrystalPHP constructor.
@@ -57,22 +60,48 @@ class App{
 	}
 	
 	/**
-	 *
+	 * @return $this
 	 */
 	public function initialize(){
 		$this->config = Config::getInstance(true);
 		$this->logger = new Logger();
-		
 		$this->request = Request::getInstance();
 		
 		Router::boot();
-		
-		$this->logger->warning("ok" . Config::get("mail.host", "error"));
-		
-		$this->logger->info("Crystal App initialized");
 
-//		var_dump($this->logger);
+		$this->logger->info("Crystal App initialized");
+		return $this;
+	}
+	
+	/**
+	 * @return Response
+	 */
+	public function run(){
+		$this->response = new Response();
+		
+		try{
+			(new Router())->resolve(ROUTE);
+		} catch (\Exception $e){
+			$this->logger->error($e->getMessage());
+		}
+		
+		return $this->response;
 	}
 	
 	
+	public function __get($name){
+		return $this->registry->get($name);
+	}
+	
+	public function __set($name, $value){
+		$this->registry->set($name, $value);
+	}
+}
+
+/**
+ * @param null $registry
+ * @return App|null
+ */
+function app($registry = null){
+	return App::app($registry);
 }

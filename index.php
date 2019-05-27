@@ -30,15 +30,5 @@ require_once "vendor/autoload.php";
 
 use \CrystalPHP\App as App;
 use \CrystalPHP\Registry as Registry;
-use \CrystalPHP\Router\Router as Router;
 
-App::app(new Registry())->initialize();
-
-$router = new Router();
-
-try{
-	$router->resolve(ROUTE);
-} catch (Exception $e){
-	App::app()->logger->error($e->getMessage());
-}
-
+App::app(Registry::getInstance())->initialize()->run();

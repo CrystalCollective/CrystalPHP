@@ -20,6 +20,7 @@
  */
 
 use CrystalPHP\Router\Router;
+use CrystalPHP\App;
 
 Router::get("/", function(){
 	echo "Crystal Home";
@@ -27,10 +28,11 @@ Router::get("/", function(){
 
 Router::get("/home", function(){
 	echo "Crystal Home";
+	
 });
 
 Router::get("/login", function(){
-	echo "Crystal login";
+	App::app()->response->sendResponse(200, "Welcome to login");
 });
 
 Router::setDefaultRoute("GET", function(){
