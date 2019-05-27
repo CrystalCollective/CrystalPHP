@@ -23,6 +23,7 @@ namespace CrystalPHP;
 
 use CrystalPHP\Config\Config as Config;
 use CrystalPHP\Lib\Logger\Logger as Logger;
+use CrystalPHP\Router\Router;
 
 /**
  * Class CrystalPHP
@@ -60,10 +61,11 @@ class App{
 	 */
 	public function initialize(){
 		$this->config = Config::getInstance(true);
+		$this->logger = new Logger();
 		
 		$this->request = Request::getInstance();
 		
-		$this->logger = new Lib\Logger\Logger();
+		Router::boot();
 		
 		$this->logger->warning("ok" . Config::get("mail.host", "error"));
 		

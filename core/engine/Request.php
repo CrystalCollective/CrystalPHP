@@ -176,14 +176,13 @@ class Request{
 		
 		define('AUTO_SERVER', '//' . REAL_HOST . '/');
 		define('HTTP_SERVER', 'http:' . AUTO_SERVER);
-		
 		define('HTTPS_SERVER', (HTTPS === true) ? ('https:' . AUTO_SERVER) : HTTP_SERVER);
 		
+		$_SERVER['REQUEST_URI_ORIGINAL'] = $_SERVER['REQUEST_URI'];
 		$_SERVER['REQUEST_URI'] = str_replace("/" . LOCAL_NAME, "", $_SERVER['REQUEST_URI']);
 		
 		define('REQUEST_URI_REL', str_replace(HTTPS_SERVER . "/app/", "", substr($_SERVER['REQUEST_URI'], 1)));
 		define('REQUEST_URI_PATH', explode("?", REQUEST_URI_REL)[0]);
-		
 		define('REQUEST_URI_FULL', HTTPS_SERVER . REQUEST_URI_REL);
 		
 		$uri = $_SERVER['REQUEST_URI'];

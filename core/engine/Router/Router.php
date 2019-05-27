@@ -46,6 +46,28 @@ class Router{
 	}
 	
 	/**
+	 * @param array $route_files
+	 * @param bool $rel , if true means route file is in route folder
+	 */
+	public static function boot($route_files = [], $rel = true){
+		if(count($route_files) == 0){
+			require_once DIR_APP . DIR_EXT_ROUTES . "/boot.php";
+		}
+		
+		foreach($route_files as $file){
+			
+			if($rel){
+				$file = DIR_APP . DIR_EXT_ROUTES . $file;
+			}
+			
+			if(is_file($file)){
+				require_once $file;
+			}
+			
+		}
+	}
+	
+	/**
 	 * @param $url
 	 * @param $callback
 	 * @return Route

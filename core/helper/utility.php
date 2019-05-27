@@ -59,7 +59,7 @@ function redirect($url){
 		return false;
 	}
 	header('Location: ' . str_replace('&amp;', '&', $url));
-	exit;
+	exit(0);
 }
 
 /*

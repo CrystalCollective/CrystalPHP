@@ -34,18 +34,6 @@ use \CrystalPHP\Router\Router as Router;
 
 App::app(new Registry())->initialize();
 
-Router::get("/", function(){
-	echo "Crystal Home";
-});
-
-Router::get("/home", function(){
-	echo "Crystal Home";
-});
-
-Router::get("/login", function(){
-	echo "Crystal login";
-});
-
 $router = new Router();
 
 try{

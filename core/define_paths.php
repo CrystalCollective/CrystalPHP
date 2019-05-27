@@ -27,6 +27,7 @@ define("DIR_EXT_DB", "/database");
 define("DIR_EXT_LIB", "/lib");
 define("DIR_EXT_LIB_EXT", "/lib_ext");
 define("DIR_EXT_CONFIG", "/config");
+define("DIR_EXT_ROUTES", "/routes");
 define("DIR_EXT_CACHE", "/cache");
 define("DIR_EXT_LOGS", "/logs");
 
