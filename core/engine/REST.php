@@ -26,7 +26,8 @@ use CrystalPHP\Lib\JSON as JSON;
 class REST{
 	
 	const DEFAULT_RESPONSE_FORMAT = 'json';
-	private $responseData;
+	
+	private $responseData = [];
 	private $registry; // Default response format
 	
 	public function __construct(){

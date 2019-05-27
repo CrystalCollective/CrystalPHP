@@ -22,8 +22,7 @@
 use CrystalPHP\Router\Router;
 
 Router::get("/api", function(){
-	
 	$rest = new \CrystalPHP\REST();
-	$rest->setResponseMsg("Welcome to CrystalPHP API");
-	$rest->sendResponse(200, ["name" => "pankaj"]);
+	$rest->setResponse(true, [], "Welcome to CrystalPHP API");
+	$rest->sendResponse(200, []);
 })->name("api.get.home");
