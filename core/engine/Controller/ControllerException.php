@@ -15,20 +15,12 @@
 
 /**
  * User: Pankaj Vaghela
- * Date: 27-05-2019
- * Time: 15:25
+ * Date: 31-05-2019
+ * Time: 14:03
  */
 
-use CrystalPHP\Router\Router;
+namespace CrystalPHP\Controller;
 
-Router::get("/api", function(){
-	$rest = new \CrystalPHP\REST();
-	$rest->setResponse(true, [], "Welcome to CrystalPHP API");
-	$rest->sendResponse(200, []);
-})->name("api.get.home");
+class ControllerException extends \Exception{
+}
 
-Router::get("/api/a", function(){
-	
-	\CrystalPHP\Dispatcher::dispatchApi(DIR_MODULES . "/" . MODULE_PUBLIC . "/ControllerModulePublicApi.php",
-		"ControllerModulePublicApi@index");
-})->name("api.get.home");

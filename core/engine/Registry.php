@@ -26,11 +26,15 @@ namespace CrystalPHP;
  * Class Registry
  * @package CrystalPHP
  *
+ *
+ * @property App $app
  * @property Registry $registry
  * @property Config\Config $config
  * @property Request $request
  * @property Response $response
  * @property Lib\Logger\Logger $logger
+ *
+ * @property array $dispatch_data
  */
 class Registry{
 	

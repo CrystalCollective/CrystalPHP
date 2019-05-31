@@ -19,21 +19,24 @@
  * Time: 15:25
  */
 
+use CrystalPHP\Dispatcher;
 use CrystalPHP\Router\Router;
 use CrystalPHP\App;
 
 Router::get("/", function(){
 	echo "Crystal Home";
+	echo "<br><a href='" . Router::get_url("login.get") . "'>Login </a>";
+	Dispatcher::dispatchRoute(DIR_MODULES . "/" . MODULE_PUBLIC . "/controller_page.php", "ControllerModulePublicPage@home");
 });
 
 Router::get("/home", function(){
 	echo "Crystal Home";
-	
+	echo "<br><a href='" . Router::get_url("login.get") . "'>Login </a>";
 });
 
 Router::get("/login", function(){
 	App::app()->response->sendResponse(200, "Welcome to login");
-});
+})->name("login.get");
 
 Router::setDefaultRoute("GET", function(){
 	echo "Default Get";

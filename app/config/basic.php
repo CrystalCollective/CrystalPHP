@@ -17,9 +17,11 @@ namespace CrystalPHP\Config;
 
 Config::set_multiple([
 	Configs::LOCAL_NAME => 'CrystalPHP',
-	'VERSION' => '0.0.1',
-	'MODE' => 'dev',
-	'ENABLE_OUTPUT' => true,
+	Configs::VERSION => '0.0.1',
+	Configs::MODE => 'dev',
+	Configs::NAMESPACE => '\\IIITR\\',
+	
+	Configs::ENABLE_OUTPUT => true,
 ]);
 
 Config::set_multiple([

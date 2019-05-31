@@ -15,20 +15,10 @@
 
 /**
  * User: Pankaj Vaghela
- * Date: 27-05-2019
- * Time: 15:25
+ * Date: 31-05-2019
+ * Time: 15:28
  */
 
-use CrystalPHP\Router\Router;
+define("MODULE_BASE", "base");
 
-Router::get("/api", function(){
-	$rest = new \CrystalPHP\REST();
-	$rest->setResponse(true, [], "Welcome to CrystalPHP API");
-	$rest->sendResponse(200, []);
-})->name("api.get.home");
 
-Router::get("/api/a", function(){
-	
-	\CrystalPHP\Dispatcher::dispatchApi(DIR_MODULES . "/" . MODULE_PUBLIC . "/ControllerModulePublicApi.php",
-		"ControllerModulePublicApi@index");
-})->name("api.get.home");

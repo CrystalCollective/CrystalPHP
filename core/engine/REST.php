@@ -37,31 +37,34 @@ class REST{
 	/*
 	* Adding to the response array
 	*/
-	
 	public function setResponseFail($msg = null){
 		$this->setResponse(false, [], $msg ? $msg : "Sorry, Request failed.");
+		return $this;
 	}
 	
 	public function setResponse($result, $data, $msg = ""){
 		$this->setResponseData($data);
 		$this->setResponseResult($result);
 		$this->setResponseMsg($msg);
+		return $this;
 	}
 	
 	public function setResponseData($response_arr){
 		$this->responseData = $response_arr;
+		return $this;
 	}
 	
 	public function setResponseResult($result = false){
 		$this->responseData['result'] = $result;
+		return $this;
 	}
 	
 	public function setResponseMsg($response_msg){
 		$this->responseData['message'] = $response_msg;
+		return $this;
 	}
 	
 	public function sendResponse($status, $response_arr = array()){
-		
 		$this->responseData = array_merge($response_arr, $this->responseData);
 		
 		$this->registry->response->addJSONHeader();

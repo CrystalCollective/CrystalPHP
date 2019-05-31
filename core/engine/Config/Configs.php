@@ -23,5 +23,9 @@ namespace CrystalPHP\Config;
 
 class Configs{
 	const LOCAL_NAME = "LOCAL_NAME";
+	const VERSION = "version";
+	const MODE = "mode"; // dev or prod
 	const ROUTE_ROOT = "ROUTE_ROOT";
+	const ENABLE_OUTPUT = "ENABLE_OUTPUT";
+	const NAMESPACE = "NAMESPACE";
 }

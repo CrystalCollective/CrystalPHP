@@ -15,20 +15,34 @@
 
 /**
  * User: Pankaj Vaghela
- * Date: 27-05-2019
- * Time: 15:25
+ * Date: 31-05-2019
+ * Time: 15:40
  */
 
-use CrystalPHP\Router\Router;
+namespace CrystalPHP\Controller;
 
-Router::get("/api", function(){
-	$rest = new \CrystalPHP\REST();
-	$rest->setResponse(true, [], "Welcome to CrystalPHP API");
-	$rest->sendResponse(200, []);
-})->name("api.get.home");
+define("RT_BASE_PAGE", "page");
 
-Router::get("/api/a", function(){
+class PageController extends Controller{
+	function init(){
+		parent::init();
+	}
 	
-	\CrystalPHP\Dispatcher::dispatchApi(DIR_MODULES . "/" . MODULE_PUBLIC . "/ControllerModulePublicApi.php",
-		"ControllerModulePublicApi@index");
-})->name("api.get.home");
+	public function setupPage(){
+		//Set Root template
+		//$this->view->setView("<file path>");
+	}
+	
+	/**
+	 * @throws ControllerException
+	 */
+	public function pageRender(){
+		//Make changes before final rendering
+		$this->render();
+	}
+	
+	public function setRootTemplate($filename){
+		$this->view->setView($filename);
+	}
+	
+}

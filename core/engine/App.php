@@ -34,6 +34,7 @@ use CrystalPHP\Router\Router;
  * @property Request $request
  * @property Response $response
  * @property Logger $logger
+ * @property Loader $loader
  */
 class App{
 	static $app = null;
@@ -46,6 +47,7 @@ class App{
 	 */
 	public function __construct($registry){
 		$this->registry = $registry;
+		$this->registry->app = $this;
 	}
 	
 	/**
@@ -65,6 +67,10 @@ class App{
 	public function initialize(){
 		$this->config = Config::getInstance(true);
 		$this->logger = new Logger();
+		
+		$this->loader = new Loader();
+		$this->loader->boot();
+		
 		$this->request = Request::getInstance();
 		
 		Router::boot();
@@ -78,6 +84,7 @@ class App{
 	 */
 	public function run(){
 		$this->response = new Response();
+		$this->loader->module();
 		
 		try{
 			(new Router())->resolve(ROUTE);
