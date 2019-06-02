@@ -101,7 +101,7 @@ class Dispatcher{
 	}
 	
 	/**
-	 * @param $filename
+	 * @param $filepath
 	 * @param $controllerClassMethod
 	 * @param array $data
 	 * @param bool $return
@@ -109,27 +109,17 @@ class Dispatcher{
 	 * @return string
 	 * @throws ControllerException
 	 */
-	public static function dispatchPage($filename, $controllerClassMethod, $data = [], $return = false, $base_controller = 'base'){
+	public static function dispatchPage($filepath, $controllerClassMethod, $data = [], $return = false, $base_controller = ''){
 		$registry = Registry::getInstance();
 		$registry->dispatch_data = $data;
 		
-		$b = Dispatcher::selectBaseController($base_controller, true);
-		self::$main_base_controller = $b;
-		$dispatcher = new Dispatcher($filename, $controllerClassMethod, $data, $b);
+		$base_controller = $base_controller === '' ? self::getSelectedBaseController() : $base_controller;
+//		$b = Dispatcher::selectBaseController($base_controller, true);
+//		self::$main_base_controller = $b;
+		$dispatcher = new Dispatcher($filepath, $controllerClassMethod, $data, $base_controller);
 		return $dispatcher->dispatch($base_controller, $return);
 	}
 	
-	public static function selectBaseController($name, $toBase = false){
-		if(isset(self::$base_controllers[$name])){
-			return self::$base_controller = $name;
-		} elseif($toBase){
-			return self::$base_controller = "base";
-		}
-		
-		return null;
-	}
-	
-	// Clear function is public in case controller needs to be cleaned explicitly
 	
 	/**
 	 * @param string $base
@@ -140,7 +130,7 @@ class Dispatcher{
 	public function dispatch($base = 'base', $return = false){
 		
 		Dispatcher::selectBaseController($base, true);
-		$c = Dispatcher::getSelectedBaseController();
+		$c = Dispatcher::getSelectedBaseController(true);
 		if(isset($c['file'])){
 			require_once($c['file']);
 		}
@@ -165,13 +155,6 @@ class Dispatcher{
 		}
 	}
 	
-	public static function getSelectedBaseController(){
-		if(isset(self::$base_controllers[self::$base_controller])){
-			return self::$base_controllers[self::$base_controller];
-		} else{
-			return self::$base_controllers['base'];
-		}
-	}
 	
 	/**
 	 * @param $filename
@@ -221,6 +204,28 @@ class Dispatcher{
 	
 	public static function getBaseController($name){
 		return self::$base_controllers[$name] ?? null;
+	}
+	
+	public static function selectBaseController($name, $toBase = false){
+		if(isset(self::$base_controllers[$name])){
+			return self::$base_controller = $name;
+		} elseif($toBase){
+			return self::$base_controller = "base";
+		}
+		
+		return null;
+	}
+	
+	public static function getSelectedBaseController($val = false){
+		
+		if(!$val){
+			return self::$base_controller;
+		}
+		if(isset(self::$base_controllers[self::$base_controller])){
+			return self::$base_controllers[self::$base_controller];
+		} else{
+			return self::$base_controllers['base'];
+		}
 	}
 	
 	public function __destruct(){

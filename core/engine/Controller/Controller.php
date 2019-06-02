@@ -157,8 +157,7 @@ class Controller{
 	}
 	
 	public function enableDispatch($enable){
-		$this->enableDispatch = $enable;
-		return $enable;
+		return $this->enableDispatch = $enable;
 	}
 	
 	/**

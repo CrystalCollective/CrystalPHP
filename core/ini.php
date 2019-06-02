@@ -15,10 +15,18 @@
 
 /**
  * User: Pankaj Vaghela
- * Date: 31-05-2019
- * Time: 15:28
+ * Date: 02-06-2019
+ * Time: 15:01
  */
 
-define("MODULE_BASE", "base");
 
+define('CRYSTAL', 'CrystalPHP');
+define('CRYSTAL_INFO', 'CrystalPHP - A flexible Framework by Crystal Collective');
 
+define('VERSION_MAJOR', 0);
+define('VERSION_MINOR', 0);
+define('VERSION_RELEASE', 1);
+define('VERSION', VERSION_MAJOR . '.' . VERSION_MINOR . '.' . VERSION_RELEASE);
+
+$a = VERSION;
+$a .= 0;

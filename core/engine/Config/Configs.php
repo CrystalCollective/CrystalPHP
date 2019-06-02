@@ -25,6 +25,8 @@ class Configs{
 	const LOCAL_NAME = "LOCAL_NAME";
 	const VERSION = "version";
 	const MODE = "mode"; // dev or prod
+	const MODE_DEV = "dev"; // mode dev
+	const MODE_PROD = "prod"; // mode prod
 	const ROUTE_ROOT = "ROUTE_ROOT";
 	const ENABLE_OUTPUT = "ENABLE_OUTPUT";
 	const NAMESPACE = "NAMESPACE";

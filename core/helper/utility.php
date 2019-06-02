@@ -84,3 +84,6 @@ function genExecTrace($depth = 5){
 	
 	return "Execution stack: \t" . implode("\n<br>\t", $result);
 }
+
+
+require_once DIR_CORE . "/helper/html-css-js-minifier.php";

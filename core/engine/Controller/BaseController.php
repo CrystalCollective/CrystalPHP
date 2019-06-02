@@ -44,7 +44,6 @@ class BaseController extends Controller{
 	
 	public function getCommons(){
 		//Add Common Layouts as childs like header, footer, navbar main, side
-		
 	}
 	
 	public function render(){

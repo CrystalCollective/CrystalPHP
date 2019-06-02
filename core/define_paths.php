@@ -44,21 +44,24 @@ define('DIR_EXT_CONTROLLER', '/controllers');
 define('DIR_EXT_MODEL', '/models');
 define('DIR_EXT_VIEW', '/views');
 
-
 define('DIR_EXT_MODULES', '/modules');
 define('DIR_MODULES', DIR_APP . DIR_EXT_MODULES);
 
 //resources
 define('DIR_EXT_RES', '/res');
-define('DIR_RESOURCE', DIR_FRONTEND . DIR_EXT_RES);
+define('DIR_RES', DIR_ROOT . DIR_EXT_RES);
 
 define('DIR_EXT_CSS', '/css');
 define('DIR_EXT_JS', '/js');
 define('DIR_EXT_IMG', '/img');
 
-define('DIR_CSS', DIR_RESOURCE . DIR_EXT_CSS);
-define('DIR_JS', DIR_RESOURCE . DIR_EXT_JS);
-define('DIR_IMG', DIR_RESOURCE . DIR_EXT_IMG);
+define('URI_REL_CSS', DIR_EXT_RES . DIR_EXT_CSS);
+define('URI_REL_JS', DIR_EXT_RES . DIR_EXT_JS);
+define('URI_REL_IMG', DIR_EXT_RES . DIR_EXT_IMG);
+
+define('DIR_CSS', DIR_RES . DIR_EXT_CSS);
+define('DIR_JS', DIR_RES . DIR_EXT_JS);
+define('DIR_IMG', DIR_RES . DIR_EXT_IMG);
 
 define('DIR_MEDIA', DIR_ROOT . "/media");
 define('DIR_UPLOADS', DIR_MEDIA . '/uploads');

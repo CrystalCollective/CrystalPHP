@@ -29,6 +29,7 @@
   },
   "autoload": {
     "files": [
+      "core/ini.php",
       "core/define_paths.php",
       "core/helper/utility.php"
     ],

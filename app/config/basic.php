@@ -15,11 +15,13 @@
 
 namespace CrystalPHP\Config;
 
+use CrystalPHP\Document;
+
 Config::set_multiple([
 	Configs::LOCAL_NAME => 'CrystalPHP',
 	Configs::VERSION => '0.0.1',
 	Configs::MODE => 'dev',
-	Configs::NAMESPACE => '\\IIITR\\',
+	Configs::NAMESPACE => '\\', //Always put \ at start and end
 	
 	Configs::ENABLE_OUTPUT => true,
 ]);
@@ -29,9 +31,21 @@ Config::set_multiple([
 ]);
 
 
+Config::set(Document::DOCUMENT, [
+	Document::TITLE => "CrystalPHP - flexible MVC Framework",
+	Document::DESCRIPTION => "A flexible MVC Framework for fast web development",
+	Document::KEYWORDS => ["CrystalPHP", "crystal collective", "Framework"],
+	Document::CHARSET => 'utf-8',
+	Document::LANG => 'en-gb',
+	Document::DIRECTION => 'ltr',
+]);
+
+
 /**
  * DEV TOOL Related Configs
  */
 Config::set_multiple([
 	'SHOW_TIME' => false,
 ]);
+
+

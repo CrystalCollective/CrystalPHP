@@ -22,8 +22,11 @@
 namespace CrystalPHP;
 
 
+use CrystalPHP\Config\Config;
+
 class Document{
 	
+	const DOCUMENT = 'document';
 	const TITLE = 'title';
 	const DESCRIPTION = 'description';
 	const KEYWORDS = 'keywords';
@@ -39,7 +42,7 @@ class Document{
 	const SCRIPT_LINKS = 'script_links';
 	const STYLE_LINKS = 'style_links';
 	
-	private static $data = array();
+	private static $data = [];
 	
 	public static function reset(){
 		self::init();
@@ -521,13 +524,13 @@ class Document{
 	}
 	
 	public static function init(){
-		$data = array();
-		$data[self::TITLE] = "CrystalPHP - flexible MVC Framework";
-		$data[self::DESCRIPTION] = "A flexible MVC Framework for fast web development";
-		$data[self::KEYWORDS] = array("CrystalPHP", "crystal collective", "Framework");
-		$data[self::CHARSET] = 'utf-8';
-		$data[self::LANG] = 'en-gb';
-		$data[self::DIRECTION] = 'ltr';
+		$data = [];
+		$data[self::TITLE] = Config::get(Document::TITLE, "CrystalPHP - flexible MVC Framework", Document::DOCUMENT);
+		$data[self::DESCRIPTION] = Config::get(Document::DESCRIPTION, "A flexible MVC Framework for fast web development", Document::DOCUMENT);
+		$data[self::KEYWORDS] = Config::get(Document::KEYWORDS, ["CrystalPHP", "crystal collective", "Framework"], Document::DOCUMENT);
+		$data[self::CHARSET] = Config::get(Document::CHARSET, 'utf-8', Document::DOCUMENT);
+		$data[self::LANG] = Config::get(Document::LANG, 'en-gb', Document::DOCUMENT);
+		$data[self::DIRECTION] = Config::get(Document::DIRECTION, 'ltr', Document::DOCUMENT);
 		$data[self::BREADCRUMBS] = [];
 		$data[self::METADATA] = [];
 		$data[self::SCRIPTS] = [];
@@ -537,10 +540,9 @@ class Document{
 		$data[self::STYLE_LINKS] = [];
 		$data[self::SCRIPT_LINKS] = [];
 		
-		$data['og:url'] = HTTPS_SERVER . "home";
+		$data['og:url'] = defined('REQUEST_URI_PATH') ? HTTPS_SERVER . REQUEST_URI_PATH : $_SERVER['REQUEST_URI'];
 		
 		self::$data = $data;
 	}
-	
-	
 }
+

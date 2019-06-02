@@ -21,11 +21,15 @@
 
 use CrystalPHP\Loader;
 
+
 Loader::register(Loader::MODULE,
 	[
+		"base_default" => [
+			"ini" => "bases/default/ini.php",
+		],
 		"public" => [
-			'ini' => "ini.php",
-		
+			// Don't need to define ini because its in root and named ini.php
 		],
 	
 	]);
+

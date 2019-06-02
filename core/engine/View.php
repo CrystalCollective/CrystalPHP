@@ -295,7 +295,7 @@ class View{
 	 * @throws \Exception
 	 */
 	public function getOutput(){
-		return !empty($this->output) ? $this->output : !empty($this->view) ? $this->fetch($this->view) : '';
+		return (!empty($this->output)) ? ($this->output) : (!empty($this->view) ? $this->fetch($this->view) : '');
 	}
 	
 	/**

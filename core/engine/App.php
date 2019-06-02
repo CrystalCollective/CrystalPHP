@@ -68,10 +68,13 @@ class App{
 		$this->config = Config::getInstance(true);
 		$this->logger = new Logger();
 		
+		$this->request = Request::getInstance();
+		
 		$this->loader = new Loader();
 		$this->loader->boot();
 		
-		$this->request = Request::getInstance();
+		Document::init();
+		
 		
 		Router::boot();
 

@@ -24,6 +24,7 @@ namespace CrystalPHP\Config;
 class Config{
 	
 	public static $instance = null;
+	private static $loaded = false;
 	
 	public static $config = [];
 	
@@ -43,13 +44,20 @@ class Config{
 	 * Load Config files
 	 */
 	public static function load(){
-		require_once DIR_ROOT . "/env.php";
-		/**
-		 * @var $ENV array
-		 */
-		self::set_multiple($ENV);
-		require_once DIR_APP . DIR_EXT_CONFIG . "/basic.php";
+		
+		if(!self::$loaded){
+			require_once DIR_ROOT . "/env.php";
+			/**
+			 * @var $ENV array
+			 */
+			self::set_multiple($ENV);
+			self::$loaded = true;
+			
+			require_once DIR_APP . DIR_EXT_CONFIG . "/init.php";
+		}
 	}
+	
+	
 	
 	/**
 	 * @param array $configs
@@ -89,10 +97,13 @@ class Config{
 	/**
 	 * @param $name
 	 * @param null $default
-	 * @return mixed|null
+	 * @param string $parent , helps with nested configs
+	 * @return array|mixed|null
 	 */
-	public static function get($name, $default = null){
+	public static function get($name, $default = null, $parent = ""){
 		
+		if($parent !== "") $name = $parent . "." . $name;
+
 		$nodes = explode(".", strtolower($name));
 		$val = self::$config;
 		

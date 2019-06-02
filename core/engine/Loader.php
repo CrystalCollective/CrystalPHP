@@ -54,11 +54,16 @@ class Loader{
 		
 		if(isset(self::$loaders[Loader::MODULE][$name])){
 			$module = self::$loaders[Loader::MODULE][$name];
-			$ini_file = DIR_MODULES . "/" . $name . "/" . $module['ini'];
+			$ini_file = DIR_MODULES . "/" . ($module['ini'] ?? $name . "/ini.php");
 			if(is_file($ini_file)){
 				require_once $ini_file;
 			}
 		}
+	}
+	
+	public function base_module($modules){
+	
+	
 	}
 	
 	
