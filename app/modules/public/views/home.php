@@ -16,8 +16,9 @@
             <li>Many More to be Added ...</li>
         </ul>
         <br>
+        <hr>
         <div class="text-center">
-            Available on GitHub (Under Development), <a href="https://github.com/CrystalCollective/CrystalPHP">CrystalCollective/CrystalPHP</a>
+            GitHub : <a href="https://github.com/CrystalCollective/CrystalPHP">CrystalCollective/CrystalPHP</a> (Under Development)
         </div>
     </div>
 </div>
