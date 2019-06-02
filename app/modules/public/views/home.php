@@ -15,5 +15,9 @@
             <li>Uses Laravel Eloquent for Database Interaction</li>
             <li>Many More to be Added ...</li>
         </ul>
+        <br>
+        <div class="text-center">
+            Available on GitHub (Under Development), <a href="https://github.com/CrystalCollective/CrystalPHP">CrystalCollective/CrystalPHP</a>
+        </div>
     </div>
 </div>

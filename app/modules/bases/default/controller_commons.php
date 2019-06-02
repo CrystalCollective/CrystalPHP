@@ -150,10 +150,10 @@ class ControllerBaseDefaultCommons extends SectionController{
 				"rel" => "stylesheet",
 				"href" => HTTPS_SERVER . "/res/css/vendor.css",
 			],
-			[
-				"rel" => "stylesheet",
-				"href" => HTTPS_SERVER . "/res/css/app.css",
-			],
+//			[
+//				"rel" => "stylesheet",
+//				"href" => HTTPS_SERVER . "/res/css/app.css",
+//			],
 		]);
 		
 	}
