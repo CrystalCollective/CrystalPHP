@@ -7,8 +7,8 @@
         <h6 class="text-center">Inspired from CodeIgniter, Laravel and AbanteCart</h6>
         <br><br>
         <ul>
-            <li>Route Based Response</li>
-            <li>Flexible MVC structure with Nested or Hierarchical MVC(HMVC) support</li>
+            <li>Route Based Response, Fast Easy Routing</li>
+            <li>Modular MVC structure with Nested or Hierarchical MVC(HMVC) support</li>
             <li>Easy REST API implementation</li>
             <li>Hybrid of MVC and REST support</li>
             <li>SEO tools</li>
