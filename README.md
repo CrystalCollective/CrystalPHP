@@ -1,6 +1,10 @@
 # CrystalPHP
 The CrystalPHP Framework. A Flexible MVC Framework by Crystal Collective.
 
+------
+A Personal project, Not Maintained.
+-----
+
 Inspired from CodeIgniter, Laravel and AbanteCart.
 
 ## Why?
